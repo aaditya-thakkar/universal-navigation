@@ -13,7 +13,7 @@ const PlannerScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>
-        PLANNER SCREEN
+        SAM SCREEN
       </Text>
       <Text style={styles.instructions}>
         This component is shared between web and react environment. To see how

@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Button } from "react-native";
 const SecondScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Hi! Second Screen reporting for duty!</Text>
+      <Text style={styles.welcome}> SETTINGS SCREEN</Text>
       <Button
         title="User #1"
         onPress={() => navigation.navigate("User", { name: "Princess Consuela Bananahammock" })}

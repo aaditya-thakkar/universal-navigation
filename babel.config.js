@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ['module:metro-react-native-babel-preset', '@babel/preset-flow', ['@babel/preset-env', { modules: 'commonjs' }]],
+  presets: ['module:metro-react-native-babel-preset', '@babel/preset-flow'],
   plugins: [
     ['./plugins/add-module-exports.js', {
       exclude: ['node_modules/react-navigation', 'node_modules/react-native-tab-view']

@@ -1,5 +1,3 @@
-// App.js - React Native
-
 import React, { Component } from "react";
 import {
   createStackNavigator,
@@ -41,10 +39,7 @@ const RootStack = createStackNavigator(
     Main: TabNav,
     ModalPage: DasModalScreen
   },
-  {
-    mode: "modal",
-    headerMode: "none"
-  }
+  {mode: "modal", headerMode: "none"}
 );
 
 class App extends Component {

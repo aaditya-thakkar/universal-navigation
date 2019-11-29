@@ -1,49 +1,59 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { Component } from "react";
+import { View } from "react-native";
+import { ModalContainer } from "react-router-modal";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import HomeScreen from "../../components/HomeScreen";
+import SecondScreen from "../../components/SecondScreen";
+import UserScreen from "../../components/UserScreen";
+import ModalScreen from "../../components/DasModalScreen";
+import PlannerScreen from "../../components/PlannerScreen";
+import SamScreen from "../../components/SAMScreen";
+import WebRouterBuilder from "./RouterBuilder";
+import TopNav from "./TopNav";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const routeMap = {
+  Home: {
+    component: HomeScreen,
+    path: "/",
+    exact: true
+  },
+  Settings: {
+    component: SecondScreen,
+    path: "/settings"
+  },
+  Planner: {
+    component: PlannerScreen,
+    path: "/planner"
+  },
+  SAM: {
+    component: SamScreen,
+    path: "/sam"
+  },
+  User: {
+    component: UserScreen,
+    path: "/user/:name?",
+    exact: true
+  },
+  ModalPage: {
+    component: ModalScreen,
+    path: "*/modal",
+    modal: true
+  }
+};
 
-type Props = {};
-export default class App extends Component<Props> {
+class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <Router>
+        <View style={{ height: "100vh", width: "100vw" }}>
+          <TopNav />
+          {WebRouterBuilder({ routeMap })}
+          <ModalContainer />
+        </View>
+      </Router>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default App;
