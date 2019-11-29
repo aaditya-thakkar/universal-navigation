@@ -1,49 +1,56 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+// App.js - React Native
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from "react";
+import {
+  createStackNavigator,
+  createBottomTabNavigator
+} from "react-navigation";
+import HomeScreen from "../../components/HomeScreen";
+import PlannerScreen from "../../components/PlannerScreen";
+import SAMScreen from "../../components/SAMScreen";
+import DasModalScreen from "../../components/DasModalScreen";
+import SecondScreen from "../../components/SecondScreen";
+import UserScreen from "../../components/UserScreen";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+const HomeStack = createStackNavigator({
+  Home: { screen: HomeScreen, navigationOptions: { title: "Home" } }
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+const PlannerStack = createStackNavigator({
+  Planner: { screen: PlannerScreen, navigationOptions: { title: "Planner" } }
+});
+
+const SamStack = createStackNavigator({
+  SAM: { screen: SAMScreen, navigationOptions: { title: "Asset Manager" } }
+});
+
+const SettingsStack = createStackNavigator({
+  Settings: { screen: SecondScreen, navigationOptions: { title: "Settings" } },
+  User: { screen: UserScreen, navigationOptions: { title: "User" } }
+});
+
+const TabNav = createBottomTabNavigator({
+  Home: HomeStack,
+  Planner: PlannerStack,
+  SAM: SamStack,
+  Settings: SettingsStack
+});
+
+const RootStack = createStackNavigator(
+  {
+    Main: TabNav,
+    ModalPage: DasModalScreen
+  },
+  {
+    mode: "modal",
+    headerMode: "none"
+  }
+);
+
+class App extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
+    return <RootStack />;
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default App;
