@@ -22,7 +22,7 @@ export default withRouter(({ history }) => {
   return (
     <View style={styles.main}>
       <Text style={styles.text} onPress={() => history.push("/")}>Home</Text>
-      <Text style={styles.text} onPress={() => history.push("/planner")}>Planner</Text>
+      <Text style={styles.text} onPress={() => history.push("/members")}>Members</Text>
       <Text style={styles.text} onPress={() => history.push("/sam")}>Asset Manager</Text>
       <Text style={styles.text} onPress={() => history.push("/settings")}>Settings</Text>
     </View>

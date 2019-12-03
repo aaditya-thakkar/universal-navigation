@@ -4,7 +4,7 @@ import {
   createBottomTabNavigator
 } from "react-navigation";
 import HomeScreen from "../../components/HomeScreen";
-import PlannerScreen from "../../components/PlannerScreen";
+import MembersScreen from "../../components/PlannerScreen";
 import SAMScreen from "../../components/SAMScreen";
 import DasModalScreen from "../../components/DasModalScreen";
 import SecondScreen from "../../components/SecondScreen";
@@ -15,7 +15,7 @@ const HomeStack = createStackNavigator({
 });
 
 const PlannerStack = createStackNavigator({
-  Planner: { screen: PlannerScreen, navigationOptions: { title: "Planner" } }
+  Planner: { screen: MembersScreen, navigationOptions: { title: "Planner" } }
 });
 
 const SamStack = createStackNavigator({

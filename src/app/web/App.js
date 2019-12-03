@@ -7,9 +7,9 @@ import HomeScreen from "../../components/HomeScreen";
 import SecondScreen from "../../components/SecondScreen";
 import UserScreen from "../../components/UserScreen";
 import ModalScreen from "../../components/DasModalScreen";
-import PlannerScreen from "../../components/PlannerScreen";
+import MembersScreen from "../../components/MembersScreen";
 import SamScreen from "../../components/SAMScreen";
-import WebRouterBuilder from "./RouterBuilder";
+import WebRouterBuilder from "./Router/RouterBuilder";
 import TopNav from "./TopNav";
 
 const routeMap = {
@@ -22,18 +22,20 @@ const routeMap = {
     component: SecondScreen,
     path: "/settings"
   },
-  Planner: {
-    component: PlannerScreen,
-    path: "/planner"
+  Members: {
+    component: MembersScreen,
+    path: "/members",
+    childRoutes: {
+      User: {
+        component: UserScreen,
+        path: "/members/:name",
+        exact: true
+      },
+    }
   },
   SAM: {
     component: SamScreen,
     path: "/sam"
-  },
-  User: {
-    component: UserScreen,
-    path: "/user/:name?",
-    exact: true
   },
   ModalPage: {
     component: ModalScreen,
