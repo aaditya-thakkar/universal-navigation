@@ -1,9 +1,7 @@
+import Loadable from 'react-loadable';
+
 import HomeScreen from "../../../components/HomeScreen";
-import SecondScreen from "../../../components/SecondScreen";
-import MembersScreen from "../../../components/MembersScreen";
-import UserScreen from "../../../components/UserScreen";
-import SamScreen from "../../../components/SAMScreen";
-import ModalScreen from "../../../components/DasModalScreen";
+import LoadingScreen from "../../../components/LoadingScreen";
 
 export const ROUTES_MAP = {
   Home: 'Home',
@@ -21,7 +19,6 @@ export const routesVsPathMap = {
   [ROUTES_MAP.User]:  "/members/:name",
   [ROUTES_MAP.SAM]:  "/sam",
   [ROUTES_MAP.ModalPage]:  "*/modal",
-
 };
 
 export default {
@@ -31,26 +28,41 @@ export default {
     exact: true
   },
   [ROUTES_MAP.Settings]: {
-    component: SecondScreen,
+    component: Loadable({
+      loader: () => import('../../../components/SecondScreen'),
+      loading: LoadingScreen,
+    }),
     path: routesVsPathMap[ROUTES_MAP.Settings],
   },
   [ROUTES_MAP.Members]: {
-    component: MembersScreen,
+    component: Loadable({
+      loader: () => import('../../../components/MembersScreen'),
+      loading: LoadingScreen,
+    }),
     path: routesVsPathMap[ROUTES_MAP.Members],
     childRoutes: {
       [ROUTES_MAP.User]: {
-        component: UserScreen,
+        component: Loadable({
+          loader: () => import('../../../components/UserScreen'),
+          loading: LoadingScreen,
+        }),
         path: routesVsPathMap[ROUTES_MAP.User],
         exact: true
       },
     }
   },
   [ROUTES_MAP.SAM]: {
-    component: SamScreen,
+    component: Loadable({
+      loader: () => import('../../../components/SAMScreen'),
+      loading: LoadingScreen,
+    }),
     path: routesVsPathMap[ROUTES_MAP.SAM]
   },
   [ROUTES_MAP.ModalPage]: {
-    component: ModalScreen,
+    component:  Loadable({
+      loader: () => import('../../../components/DasModalScreen'),
+      loading: LoadingScreen,
+    }),
     path: routesVsPathMap[ROUTES_MAP.ModalPage],
     modal: true
   }
